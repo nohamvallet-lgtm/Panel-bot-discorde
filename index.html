@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10131d">
+  <meta name="description" content="Prototype de tableau de bord pour bot Discord.">
+  <title>Orbit — Discord Bot Panel</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="Orbit accueil"><span class="brand-mark">◈</span><span>orbit<span class="brand-dot">.</span></span></a>
+      <div class="server-switch"><span class="server-icon">O</span><span><b>Orbit Community</b><small>Serveur sélectionné</small></span><span class="chevron">⌄</span></div>
+      <p class="nav-label">ESPACE DE TRAVAIL</p>
+      <nav class="nav">
+        <button class="nav-item active" data-view="overview"><span>▦</span> Vue d’ensemble</button>
+        <button class="nav-item" data-view="commands"><span>⌘</span> Commandes</button>
+        <button class="nav-item" data-view="moderation"><span>◉</span> Modération <i class="nav-count">3</i></button>
+        <button class="nav-item" data-view="activity"><span>↗</span> Activité</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="profile"><div class="avatar">A</div><div><b>Administrateur</b><small>Mode démonstration</small></div><span class="dots">•••</span></div><div class="demo-note"><span class="pulse"></span> Prototype hors ligne</div></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><button class="mobile-menu" id="menuToggle" aria-label="Ouvrir le menu">☰</button><div class="crumb">Workspace <span>/</span> <b id="crumbCurrent">Vue d’ensemble</b></div><div class="top-actions"><span class="demo-pill">● DONNÉES DE DÉMO</span><button class="icon-button" aria-label="Notifications">♧</button><div class="avatar small">A</div></div></header>
+      <section class="content">
+        <div class="page-heading"><div><p class="eyebrow">MARDI 25 NOVEMBRE 2026</p><h1 id="pageTitle">Vue d’ensemble</h1><p class="subtitle" id="pageSubtitle">Voici ce qui se passe sur votre espace Discord.</p></div><button class="primary-button" id="refreshButton">↻ Actualiser</button></div>
+        <section class="view active-view" id="overview">
+          <div class="stats-grid">
+            <article class="stat-card"><div class="stat-top"><span>État du bot</span><span class="stat-icon green">◉</span></div><div class="stat-value status-value"><span class="status-dot"></span> En ligne</div><div class="stat-foot"><span class="positive">● Opérationnel</span><span>Démo locale</span></div></article>
+            <article class="stat-card"><div class="stat-top"><span>Serveurs</span><span class="stat-icon purple">⌂</span></div><div class="stat-value">12</div><div class="stat-foot"><span class="positive">+2</span><span>sur les 30 derniers jours</span></div></article>
+            <article class="stat-card"><div class="stat-top"><span>Latence</span><span class="stat-icon blue">ϟ</span></div><div class="stat-value">48 <small>ms</small></div><div class="stat-foot"><span class="positive">Stable</span><span>Valeur simulée</span></div></article>
+            <article class="stat-card"><div class="stat-top"><span>Commandes utilisées</span><span class="stat-icon orange">⌘</span></div><div class="stat-value">2 481</div><div class="stat-foot"><span class="positive">+14,8 %</span><span>cette semaine</span></div></article>
+          </div>
+          <div class="dashboard-grid">
+            <article class="panel activity-panel"><div class="panel-heading"><div><h2>Activité récente</h2><p>Les derniers événements enregistrés</p></div><button class="text-button" data-go="activity">Tout voir ↗</button></div><div class="event-list">
+              <div class="event"><span class="event-symbol purple-bg">⌘</span><div><b>/help</b><p>Commande exécutée par <strong>@Mila</strong></p></div><time>Il y a 2 min</time></div>
+              <div class="event"><span class="event-symbol green-bg">✓</span><div><b>Vérification terminée</b><p>Contrôle automatique du serveur</p></div><time>Il y a 8 min</time></div>
+              <div class="event"><span class="event-symbol orange-bg">⚑</span><div><b>Signalement reçu</b><p>Un nouveau signalement attend une revue</p></div><time>Il y a 21 min</time></div>
+              <div class="event"><span class="event-symbol blue-bg">↗</span><div><b>/rank</b><p>Commande exécutée par <strong>@Noa</strong></p></div><time>Il y a 34 min</time></div>
+            </div></article>
+            <article class="panel health-panel"><div class="panel-heading"><div><h2>État des services</h2><p>Indicateurs de démonstration</p></div><span class="healthy-tag">Tout va bien</span></div><div class="service-row"><span><i class="service-dot"></i>Passerelle Discord</span><b>Connectée</b></div><div class="service-row"><span><i class="service-dot"></i>Base de données</span><b>Disponible</b></div><div class="service-row"><span><i class="service-dot"></i>Commandes</span><b>Actives</b></div><div class="uptime"><div><span>Disponibilité simulée</span><b>99,9 %</b></div><div class="progress"><span></span></div></div></article>
+          </div>
+          <article class="panel quick-panel"><div class="panel-heading"><div><h2>Accès rapides</h2><p>Retrouvez les outils principaux</p></div></div><div class="quick-actions"><button data-go="commands"><span>⌘</span><b>Commandes</b><small>Consulter les commandes</small></button><button data-go="moderation"><span>◉</span><b>Modération</b><small>Examiner les signalements</small></button><button data-go="activity"><span>↗</span><b>Journaux</b><small>Voir les événements</small></button></div></article>
+        </section>
+        <section class="view" id="commands"><article class="panel"><div class="panel-heading"><div><h2>Catalogue des commandes</h2><p>Exemples de commandes disponibles dans cette maquette.</p></div><input id="commandSearch" class="search" type="search" placeholder="Rechercher une commande…" aria-label="Rechercher une commande"></div><div class="table-wrap"><table><thead><tr><th>COMMANDE</th><th>CATÉGORIE</th><th>DESCRIPTION</th><th>STATUT</th></tr></thead><tbody id="commandRows"><tr data-search="help utilitaire aide"><td><code>/help</code></td><td>Utilitaire</td><td>Affiche le centre d’aide</td><td><span class="table-status">Activée</span></td></tr><tr data-search="rank social classement"><td><code>/rank</code></td><td>Social</td><td>Affiche le classement du serveur</td><td><span class="table-status">Activée</span></td></tr><tr data-search="clear moderation messages"><td><code>/clear</code></td><td>Modération</td><td>Prépare le nettoyage de messages</td><td><span class="table-status">Activée</span></td></tr><tr data-search="server information serveur"><td><code>/server</code></td><td>Utilitaire</td><td>Affiche les informations du serveur</td><td><span class="table-status">Activée</span></td></tr><tr data-search="ticket support assistance"><td><code>/ticket</code></td><td>Support</td><td>Ouvre un ticket d’assistance</td><td><span class="table-status muted-status">En préparation</span></td></tr></tbody></table><p class="empty-state" id="noCommands" hidden>Aucune commande ne correspond à cette recherche.</p></div></article></section>
+        <section class="view" id="moderation"><article class="panel"><div class="panel-heading"><div><h2>File de modération</h2><p>Signalements fictifs pour illustrer l’interface.</p></div><span class="pending-tag">3 en attente</span></div><div class="report-list" id="reportList"><div class="report"><div><b>Signalement #1042</b><p><strong>@PixelFox</strong> · Message signalé dans #général</p><small>Reçu il y a 6 minutes</small></div><span class="review-tag">À examiner</span></div><div class="report"><div><b>Signalement #1041</b><p><strong>@Luna</strong> · Comportement signalé dans #discussion</p><small>Reçu il y a 18 minutes</small></div><span class="review-tag">À examiner</span></div><div class="report"><div><b>Signalement #1040</b><p><strong>@CraftMax</strong> · Contenu signalé dans #partage</p><small>Reçu il y a 32 minutes</small></div><span class="review-tag">À examiner</span></div></div></article><p class="disclaimer">Cette page est une maquette : aucun signalement réel n’est consulté ou traité.</p></section>
+        <section class="view" id="activity"><article class="panel"><div class="panel-heading"><div><h2>Journal d’activité</h2><p>Historique fictif des actions du bot.</p></div><select class="search" id="activityFilter" aria-label="Filtrer les événements"><option value="all">Tous les événements</option><option value="info">Information</option><option value="success">Succès</option><option value="warning">Avertissement</option></select></div><div class="event-list full-events" id="fullEvents"><div class="event" data-level="info"><span class="event-symbol purple-bg">⌘</span><div><b>Commande /help</b><p>@Mila · #général</p></div><time>14:42</time></div><div class="event" data-level="success"><span class="event-symbol green-bg">✓</span><div><b>Vérification terminée</b><p>Contrôle automatique</p></div><time>14:36</time></div><div class="event" data-level="warning"><span class="event-symbol orange-bg">⚑</span><div><b>Signalement reçu</b><p>Signalement #1042</p></div><time>14:23</time></div><div class="event" data-level="info"><span class="event-symbol blue-bg">↗</span><div><b>Commande /rank</b><p>@Noa · #classement</p></div><time>14:10</time></div><div class="event" data-level="success"><span class="event-symbol green-bg">✓</span><div><b>Configuration chargée</b><p>Paramètres de démonstration</p></div><time>13:58</time></div></div></article></section>
+        <footer>Orbit Panel <span>•</span> Prototype indépendant · Données fictives</footer>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
